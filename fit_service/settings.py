@@ -42,8 +42,7 @@ TEMPLATES=[{
 },
 }]
 
-WSGI_APPLICATION='fit_service.settings.wsgi.application'
-
+WSGI_APPLICATION = 'fit_service.wsgi.application'
 DATABASES={
 'default':{
 'ENGINE':'django.db.backends.sqlite3',
@@ -54,6 +53,7 @@ DATABASES={
 LANGUAGE_CODE='ru-ru'
 TIME_ZONE='UTC'
 STATIC_URL='/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
 
 LOGIN_URL = '/cabinet/'

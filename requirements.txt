@@ -1,2 +1,6 @@
-Django>=4.2
-echo "pysqlite3-binary" >> requirements.txt
+Django==4.2.16
+gunicorn
+whitenoise[brotli]
+dj-database-url
+psycopg2-binary
+pysqlite3-binary
