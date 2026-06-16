@@ -1,0 +1,88 @@
+{% extends "base_site.html" %}
+{% block title %}Личный кабинет — FIT SERVICE Мытищи{% endblock %}
+{% block content %}
+<section class="bg-brand-dark text-white py-14 sm:py-20">
+    <div class="container mx-auto px-4">
+        <span class="inline-block bg-orange-600 px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest mb-5">Аккаунт</span>
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic">Личный кабинет</h1>
+        <p class="text-lg text-gray-200 mt-6 max-w-2xl">Вход, регистрация, история заявок и быстрый доступ к записи на сервис.</p>
+    </div>
+</section>
+
+{% if request.user.is_authenticated %}
+<section class="py-12 sm:py-16">
+    <div class="container mx-auto px-4 grid lg:grid-cols-3 gap-8">
+        <aside class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100 h-fit">
+            <div class="w-20 h-20 bg-orange-100 text-orange-600 rounded-3xl flex items-center justify-center text-4xl mb-6"><i class="fas fa-user"></i></div>
+            <h2 class="text-2xl font-black italic mb-2">{{ request.user.username }}</h2>
+            <p class="text-gray-500 text-sm mb-6">Вы вошли в личный кабинет</p>
+            <div class="grid gap-3">
+                <a href="/contacts/" class="bg-brand-orange text-white text-center py-4 rounded-xl font-black hover:bg-orange-700 transition">Новая запись</a>
+                <a href="/logout/" class="bg-gray-100 text-gray-900 text-center py-4 rounded-xl font-black hover:bg-gray-200 transition">Выйти</a>
+            </div>
+        </aside>
+
+        <div class="lg:col-span-2 space-y-8">
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <p class="text-xs uppercase font-black text-gray-400">Бонусы</p>
+                    <p class="text-3xl font-black text-orange-600 mt-2">350</p>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <p class="text-xs uppercase font-black text-gray-400">Скидка</p>
+                    <p class="text-3xl font-black text-orange-600 mt-2">5%</p>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <p class="text-xs uppercase font-black text-gray-400">Заявок</p>
+                    <p class="text-3xl font-black text-orange-600 mt-2">{{ requests_count }}</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                <h2 class="text-2xl font-black uppercase italic mb-6">История заявок</h2>
+                {% if requests %}
+                    <div class="space-y-4">
+                        {% for item in requests %}
+                        <div class="border border-gray-100 rounded-2xl p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                            <div>
+                                <h3 class="font-black">{{ item.service }}</h3>
+                                <p class="text-sm text-gray-500">{{ item.car }} · {{ item.phone }}</p>
+                            </div>
+                            <span class="text-xs font-black uppercase text-gray-400">{{ item.created_at|date:"d.m.Y H:i" }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-600">Пока нет заявок. Оставьте первую запись на странице контактов.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="py-12 sm:py-16">
+    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-10 border border-gray-100">
+            <h2 class="text-3xl font-black uppercase italic mb-3">Вход</h2>
+            <p class="text-gray-600 mb-8">Введите телефон и пароль, чтобы открыть личный кабинет.</p>
+            <form method="POST" action="/login/" class="space-y-4">
+                {% csrf_token %}
+                <input type="tel" name="login_phone" required placeholder="Телефон" class="w-full px-5 py-4 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+                <input type="password" name="password" required placeholder="Пароль" class="w-full px-5 py-4 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+                <button class="w-full bg-brand-dark text-white py-4 rounded-xl font-black hover:bg-black transition">Войти</button>
+            </form>
+        </div>
+        <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-10 border border-gray-100">
+            <h2 class="text-3xl font-black uppercase italic mb-3">Регистрация</h2>
+            <p class="text-gray-600 mb-8">Создайте аккаунт по номеру телефона для отслеживания заявок.</p>
+            <form method="POST" action="/register/" class="space-y-4">
+                {% csrf_token %}
+                <input type="tel" name="login_phone" required placeholder="Телефон" class="w-full px-5 py-4 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+                <input type="password" name="password" required placeholder="Пароль" class="w-full px-5 py-4 bg-gray-50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+                <button class="w-full bg-brand-orange text-white py-4 rounded-xl font-black hover:bg-orange-700 transition">Создать аккаунт</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

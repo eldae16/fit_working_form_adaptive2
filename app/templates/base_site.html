@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FIT SERVICE Мытищи{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .bg-brand-orange { background-color: #ff6b00; }
+        .text-brand-orange { color: #ff6b00; }
+        .border-brand-orange { border-color: #ff6b00; }
+        .bg-brand-dark { background-color: #1a1a1a; }
+        .text-brand-dark { color: #1a1a1a; }
+        .border-brand-dark { border-color: #1a1a1a; }
+        input, textarea, select, button { font-size: 16px; }
+        iframe { max-width: 100%; }
+        @media (max-width: 640px) {
+            .container { width: 100%; }
+            h1 { line-height: 1.05; }
+            section { scroll-margin-top: 90px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+    <!-- Общая шапка сайта -->
+    {% include "includes/site_header.html" %}
+
+    {% if messages %}
+    <div class="container mx-auto px-4 mt-6 space-y-3">
+        {% for message in messages %}
+        <div class="rounded-xl px-5 py-4 font-semibold {% if message.tags == 'error' %}bg-red-50 text-red-700 border border-red-100{% else %}bg-green-50 text-green-700 border border-green-100{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <main class="flex-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-brand-dark text-gray-400 py-10 mt-12">
+        <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+            <div>
+                <div class="text-2xl font-black tracking-tighter italic uppercase text-white">FIT <span class="text-orange-500">SERVICE</span></div>
+                <p class="mt-3 text-sm">Автосервис в Мытищах: диагностика, ремонт и обслуживание автомобилей.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase mb-3">Разделы</h4>
+                <div class="grid gap-2 text-sm">
+                    <a href="/services/" class="hover:text-orange-500">Каталог услуг</a>
+                    <a href="/contacts/" class="hover:text-orange-500">Контакты и карта</a>
+                    <a href="/reviews/" class="hover:text-orange-500">Отзывы клиентов</a>
+                    <a href="/cabinet/" class="hover:text-orange-500">Личный кабинет</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase mb-3">Контакты</h4>
+                <p class="text-sm">Мытищи, ул. Центральная, 10</p>
+                <p class="text-sm mt-2">+7 (495) 000-00-00</p>
+                <p class="text-sm mt-2">Ежедневно: 09:00 — 21:00</p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 pt-6 border-t border-white/10 text-center text-xs">
+            &copy; 2026 FIT SERVICE Мытищи. Все права защищены.
+        </div>
+    </footer>
+</body>
+</html>

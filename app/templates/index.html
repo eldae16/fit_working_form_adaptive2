@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT SERVICE Мытищи — Федеральная сеть автосервисов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .brand-orange { color: #ff6b00; }
+        .bg-brand-orange { background-color: #ff6b00; }
+        .bg-brand-dark { background-color: #1a1a1a; }
+        .text-brand-dark { color: #1a1a1a; }
+        .border-brand-dark { border-color: #1a1a1a; }
+        details summary::-webkit-details-marker { display: none; }
+        
+        /* Стили для модального окна */
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow: hidden;
+        }
+        input, textarea, select, button { font-size: 16px; }
+        @media (max-width: 640px) {
+            section { scroll-margin-top: 90px; }
+            .hero-title { font-size: 2.5rem; line-height: 1.05; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Общая шапка сайта -->
+    {% include "includes/site_header.html" %}
+
+
+    <!-- Hero Screen с фото -->
+    <header class="relative bg-brand-dark text-white py-16 sm:py-24 md:py-32 px-4 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1599256621730-535171e18ef2?q=80&w=2000&auto=format&fit=crop" 
+                 alt="Ремонт автомобиля в FIT SERVICE Мытищи" 
+                 class="w-full h-full object-cover object-center">
+        </div>
+        
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent z-15"></div>
+        
+        <div class="container mx-auto relative z-20">
+            <div class="max-w-3xl">
+                <div class="inline-block bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded mb-6 uppercase tracking-widest">Филиал в Мытищах</div>
+                <h1 class="hero-title text-4xl sm:text-5xl md:text-7xl font-black mb-6 uppercase leading-tight italic">
+                    Ремонт авто <br><span class="text-orange-500 italic">без сюрпризов</span>
+                </h1>
+                <p class="text-base sm:text-xl mb-10 text-gray-100 leading-relaxed max-w-xl font-medium">
+                    Честный сервис в Мытищах с гарантией 1 год. Свой склад запчастей, прозрачные цены и квалифицированные мастера.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contacts" class="bg-brand-orange text-center text-white px-10 py-5 rounded-xl text-lg font-bold hover:scale-105 transition transform shadow-xl shadow-orange-900/20 uppercase tracking-tight">
+                        Записаться на диагностику
+                    </a>
+                    <div class="flex items-center gap-3 px-6 py-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-[10px] border-2 border-brand-dark">★</div>
+                            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-[10px] border-2 border-brand-dark">★</div>
+                        </div>
+                        <span class="text-sm font-medium">Рейтинг 5.0 в Яндекс.Картах</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black uppercase mb-4 tracking-tighter">Наши услуги</h2>
+                <div class="w-24 h-1 bg-brand-orange mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group p-8 border border-gray-100 rounded-2xl hover:border-orange-500 transition-all duration-300 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-3xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors italic font-black">TO</div>
+                    <h3 class="text-2xl font-bold mb-4 italic">Техническое обслуживание</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Замена масла и фильтров с сохранением гарантии дилера.</p>
+                    <a href="#contacts" class="text-orange-600 font-bold hover:underline">Подробнее →</a>
+                </div>
+                <div class="group p-8 border border-gray-100 rounded-2xl hover:border-orange-500 transition-all duration-300 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-3xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors italic font-black"><i class="fas fa-tools"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 italic">Ремонт ходовой</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Диагностика и ремонт подвески любой сложности на стенде.</p>
+                    <a href="#contacts" class="text-orange-600 font-bold hover:underline">Подробнее →</a>
+                </div>
+                <div class="group p-8 border border-gray-100 rounded-2xl hover:border-orange-500 transition-all duration-300 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-3xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors italic font-black"><i class="fas fa-microchip"></i></div>
+                    <h3 class="text-2xl font-bold mb-4 italic">Диагностика электроники</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">Поиск и устранение ошибок современными сканерами.</p>
+                    <a href="#contacts" class="text-orange-600 font-bold hover:underline">Подробнее →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo -->
+    <section class="bg-brand-orange py-16 overflow-hidden relative">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-white relative z-10">
+            <div class="mb-8 md:mb-0">
+                <h3 class="text-4xl font-black mb-2 uppercase italic tracking-tighter">Первая диагностика — 0₽</h3>
+                <p class="text-xl font-medium opacity-90">Проверим ваш автомобиль по 50 параметрам бесплатно!</p>
+            </div>
+            <a href="#contacts" class="bg-white text-orange-600 px-12 py-5 rounded-xl font-black hover:bg-gray-100 transition shadow-2xl uppercase tracking-widest text-sm">
+                Получить купон
+            </a>
+        </div>
+    </section>
+
+    <!-- Steps -->
+    <section id="steps" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-black text-center mb-16 uppercase italic">Как мы работаем</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+                <div class="relative">
+                    <div class="w-16 h-16 bg-white border-4 border-orange-500 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-xl italic">01</div>
+                    <h4 class="font-bold text-lg mb-2 uppercase italic">Запись</h4>
+                    <p class="text-gray-500 text-sm italic font-medium">Через сайт или телефон на удобное время</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 bg-white border-4 border-orange-500 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-xl italic">02</div>
+                    <h4 class="font-bold text-lg mb-2 uppercase italic">Осмотр</h4>
+                    <p class="text-gray-500 text-sm italic font-medium">Мастер принимает авто и фиксирует задачи</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 bg-white border-4 border-orange-500 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-xl italic">03</div>
+                    <h4 class="font-bold text-lg mb-2 uppercase italic">Смета</h4>
+                    <p class="text-gray-500 text-sm italic font-medium">Согласовываем цену до начала работ</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 bg-white border-4 border-orange-500 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-xl italic">04</div>
+                    <h4 class="font-bold text-lg mb-2 uppercase italic">Готово</h4>
+                    <p class="text-gray-500 text-sm italic font-medium">Забираете исправное авто с гарантией</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-4xl font-black text-center mb-16 uppercase italic">Вопросы и ответы</h2>
+            <div class="space-y-4">
+                <details class="group border border-gray-100 rounded-2xl p-6 bg-gray-50 transition-all cursor-pointer open:bg-white open:shadow-xl">
+                    <summary class="font-bold text-lg flex justify-between items-center list-none">
+                        <span>Можно ли приехать со своими запчастями?</span>
+                        <span class="text-orange-500 transition group-open:rotate-180">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed italic font-medium">
+                        Да, вы можете привезти свои детали. Но в этом случае гарантия будет распространяться только на саму работу. При покупке запчастей у нас — гарантия 1 год на всё.
+                    </p>
+                </details>
+                <details class="group border border-gray-100 rounded-2xl p-6 bg-gray-50 transition-all cursor-pointer open:bg-white open:shadow-xl">
+                    <summary class="font-bold text-lg flex justify-between items-center list-none">
+                        <span>Сколько длится стандартное ТО?</span>
+                        <span class="text-orange-500 transition group-open:rotate-180">▼</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed italic font-medium">
+                        Обычно замена масла и фильтров занимает от 40 до 60 минут. Вы сможете подождать в нашей зоне отдыха.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Form -->
+    <section id="contacts" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 p-6 sm:p-10 md:p-16 bg-brand-dark text-white">
+                    <h2 class="text-4xl font-black mb-8 italic uppercase tracking-tighter">FIT SERVICE <span class="text-orange-500">МЫТИЩИ</span></h2>
+                    <div class="space-y-6 text-lg mb-12">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center"><i class="fas fa-map-marker-alt"></i></div>
+                            <p>Мытищи, ул. Центральная, д. 10</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center"><i class="fas fa-clock"></i></div>
+                            <p>Ежедневно: 09:00 — 21:00</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center"><i class="fas fa-phone"></i></div>
+                            <p>+7 (495) 000-00-00</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10 italic text-sm">
+                        Оставьте заявку сейчас, и мы забронируем за вами бесплатную диагностику!
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 p-6 sm:p-10 md:p-16">
+                    <h3 class="text-2xl font-bold mb-8 uppercase italic tracking-tight">Записаться онлайн</h3>
+                    {% if messages %}
+                    <div class="mb-6 space-y-3">
+                        {% for message in messages %}
+                        <div class="rounded-2xl px-5 py-4 font-bold text-sm {% if message.tags == 'error' %}bg-red-50 text-red-700 border border-red-100{% else %}bg-green-50 text-green-700 border border-green-100{% endif %}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form method="POST" action="/#contacts" class="space-y-4">
+{% csrf_token %}
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-2 text-gray-400 italic">Ваше имя</label>
+                            <input type="text" name="name" required autocomplete="name" placeholder="Иван Иванов" class="w-full px-5 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-2 text-gray-400 italic">Телефон</label>
+                            <input type="tel" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__" class="w-full px-5 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-2 text-gray-400 italic">Марка и модель авто</label>
+                            <input type="text" name="car" autocomplete="off" placeholder="Пример: Kia Rio 2018" class="w-full px-5 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase mb-2 text-gray-400 italic">Что нужно сделать?</label>
+                            <input type="text" name="service" autocomplete="off" placeholder="Пример: Замена масла, стук в подвеске" class="w-full px-5 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+                        </div>
+                        <button type="submit" class="w-full bg-brand-orange text-white py-5 rounded-xl font-black text-lg hover:bg-orange-600 transition shadow-xl shadow-orange-200 uppercase tracking-widest mt-4">
+                            Записаться на сервис
+                        </button>
+                        <p class="text-[10px] text-gray-400 mt-4 text-center">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (Модальное окно Личного Кабинета) -->
+    <div id="authModal" class="modal opacity-0 pointer-events-none fixed inset-0 w-full h-full flex items-center justify-center z-50">
+        <!-- Полупрозрачный задний фон -->
+        <div onclick="toggleModal()" class="modal-overlay absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        
+        <!-- Контент окна -->
+        <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-3xl shadow-2xl z-50 overflow-y-auto relative p-8 md:p-10 transform scale-95 transition-transform duration-300">
+            <!-- Кнопка закрытия -->
+            <button onclick="toggleModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black transition text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-2">Личный кабинет</h3>
+                <p class="text-sm text-gray-500">Контролируйте историю ремонта и бонусы</p>
+            </div>
+
+            <form method="POST" action="/login/" class="space-y-4">
+{% csrf_token %}
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-2 text-gray-400 italic">Номер телефона</label>
+                    <input type="tel" name="login_phone" placeholder="+7 (___) ___-__-__" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-2 text-gray-400 italic">Пароль</label>
+                    <input type="password" name="password" placeholder="••••••••" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+                </div>
+                <div class="flex justify-between items-center text-xs font-semibold text-gray-500 pt-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" class="rounded text-orange-600 focus:ring-orange-500"> Запомнить меня
+                    </label>
+                    <a href="#" class="hover:text-orange-600 transition">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="w-full bg-brand-dark text-white py-4 rounded-xl font-black text-md hover:bg-black transition shadow-xl uppercase tracking-wider mt-4">
+                    Войти в кабинет
+                </button>
+                <div class="text-center text-xs font-medium text-gray-400 mt-6">
+                    Ещё не зарегистрированы?<button type="submit" formaction="/register/" class="text-orange-600 font-bold hover:underline ml-1">Создать аккаунт</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-brand-dark text-gray-500 py-12 text-center border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <p class="text-sm font-medium italic">&copy; 2026 FIT SERVICE Мытищи. Профессиональное обслуживание автомобилей.</p>
+        </div>
+    </footer>
+
+    <!-- Логика работы Личного Кабинета на JavaScript -->
+    <script>
+        function toggleModal() {
+            const body = document.querySelector('body');
+            const modal = document.querySelector('#authModal');
+            const modalContent = modal.querySelector('.bg-white');
+
+            if (modal.classList.contains('opacity-0')) {
+                // Открываем модальное окно
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+                body.classList.add('modal-active');
+            } else {
+                // Закрываем модальное окно
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                body.classList.remove('modal-active');
+            }
+        }
+
+        // Закрытие по клавише Esc
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) {
+                const modal = document.querySelector('#authModal');
+                if (!modal.classList.contains('opacity-0')) {
+                    toggleModal();
+                }
+            }
+        };
+    </script>
+
+</body>
+</html>
